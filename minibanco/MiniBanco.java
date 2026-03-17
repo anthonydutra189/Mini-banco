@@ -3,6 +3,29 @@ import java.util.Scanner;
 
 
 public class MiniBanco{
+    //CONSTANTES:
+    static final double LIMITE_SAQUE = 1000.00;
+    static final double TAXA_SAQUE = 0.02;
+
+    static double calcularTotalSaque(double valor){
+
+        return valor + (valor * TAXA_SAQUE);        
+    }
+
+    static boolean dentroDoLimite(double valor){
+
+        return valor <= LIMITE_SAQUE;
+    }
+    
+    static boolean saldoSuficiente(double saldo, double valor){
+
+        return saldo >= calcularTotalSaque(valor);
+    }
+
+    static double sacar(double saldo, double valor){
+
+        return saldo - calcularTotalSaque(valor);
+    }
 
     static void exibirMenu(){
     System.out.println("\n=== MiniBanco ===");
@@ -54,7 +77,22 @@ public class MiniBanco{
                 }
                 //System.out.println(" [Depositar  - em breve]");
             }else if (opcao == 2){
-                System.out.println(" [Sacara - em breve]");
+                System.out.print(" Valor a sacar: R$");
+                double valorSaque = scanner.nextDouble();
+                
+                if (!valorEhValido(valorSaque)){
+                    System.out.println("Atenção, valor inválido.");
+                }else if (!dentroDoLimite(valorSaque)){
+                    System.out.printf(" Limite exedido. Máximo: R$ %.2f%n", LIMITE_SAQUE);
+                }else if (!saldoSuficiente(saldo, valorSaque)){
+                    System.out.printf(" Saldo insuficiente. Necessário: R$ %.2f%n", calcularTotalSaque(valorSaque));
+                }else {
+                    double taxa = valorSaque * TAXA_SAQUE;
+                    saldo = sacar(saldo, valorSaque);
+                    System.out.printf(" Saque realizado. Taxa cobrada: R$ % .2f%n",taxa) ;
+                }
+              
+                // System.out.println(" [Sacara - em breve]");
             }else if (opcao == 3){
                 System.out.println("[Consultar Saldo]");
             }else if (opcao == 4){
