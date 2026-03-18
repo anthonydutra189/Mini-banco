@@ -91,10 +91,8 @@ public class MiniBanco{
                     saldo = sacar(saldo, valorSaque);
                     System.out.printf(" Saque realizado. Taxa cobrada: R$ % .2f%n",taxa) ;
                 }
-              
-                // System.out.println(" [Sacara - em breve]");
             }else if (opcao == 3){
-                System.out.println("[Consultar Saldo]");
+                exibirMenu();
             }else if (opcao == 4){
                 System.out.println( "[Extrato - em breve]");
             }else if (opcao == 0){
