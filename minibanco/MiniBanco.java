@@ -92,7 +92,7 @@ public class MiniBanco{
                     System.out.printf(" Saque realizado. Taxa cobrada: R$ % .2f%n",taxa) ;
                 }
             }else if (opcao == 3){
-                exibirMenu();
+                exibirSaldo(saldo);
             }else if (opcao == 4){
                 System.out.println( "[Extrato - em breve]");
             }else if (opcao == 0){
